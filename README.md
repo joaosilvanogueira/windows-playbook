@@ -7,12 +7,7 @@
 Copy and paste the code below into your PowerShell terminal to get your Windows machine ready to work with Ansible.
 
 ```powershell
-[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-$url = "https://raw.githubusercontent.com/AlexNabokikh/windows-playbook/master/setup.ps1"
-$file = "$env:temp\setup.ps1"
-
-(New-Object -TypeName System.Net.WebClient).DownloadFile($url, $file)
-powershell.exe -ExecutionPolicy ByPass -File $file -Verbose
+powershell.exe -ExecutionPolicy ByPass -File setup.ps1 -Verbose
 ```
 
 ### Ansible Control node 🕹

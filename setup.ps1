@@ -45,6 +45,24 @@ else {
     }
 }
 
+# Check if WSL is installed
+$wslFeature = Get-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
+if ($wslFeature.State -eq 'Enabled') {
+    Write-Host "WSL is already installed."
+} else {
+    Write-Host "WSL is not installed. Installing WSL..."
+    wsl --set-default-version 2
+    wsl --install
+}
+
+# Install Docker Desktop using Chocolatey
+if ([bool](Get-Command -Name 'docker' -ErrorAction SilentlyContinue)) {
+    Write-Verbose "Docker Desktop is already installed, skip installation." -Verbose
+} else {
+    Write-Verbose "Installing Docker Desktop using Chocolatey..." -Verbose
+    choco install docker-desktop -y
+}
+
 # TODO: Try to add an automation here
 # Function to close SSH port, should be run after the setup is complet
 function Close-SSHPort {
