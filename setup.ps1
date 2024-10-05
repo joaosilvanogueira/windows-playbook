@@ -32,7 +32,7 @@ else {
     # Start the sshd service
     Write-Verbose "Starting OpenSSH service..." -Verbose
     Start-Service sshd
-    Set-Service -Name sshd -StartupType 'Automatic'
+    Set-Service -Name sshd -StartupType 'Manual'
 
     # Confirm the Firewall rule is configured. It should be created automatically by setup. Run the following to verify
     Write-Verbose "Confirm the Firewall rule is configured..." -Verbose
@@ -43,4 +43,16 @@ else {
     else {
         Write-Output "Firewall rule 'OpenSSH-Server-In-TCP' has been created and exists."
     }
+}
+
+# TODO: Try to add an automation here
+# Function to close SSH port, should be run after the setup is complet
+function Close-SSHPort {
+    Write-Verbose "Stopping OpenSSH service..." -Verbose
+    Stop-Service sshd
+    
+    Write-Verbose "Disabling OpenSSH firewall rule..." -Verbose
+    Set-NetFirewallRule -Name 'OpenSSH-Server-In-TCP' -Enabled False
+    
+    Write-Output "SSH service stopped and port 22 closed."
 }
