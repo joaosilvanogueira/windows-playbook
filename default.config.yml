@@ -31,6 +31,42 @@ power_plan: "high_performance"
 install_chocolatey_packages: true
 choco_installed_packages:
   - zoom
+  - 7zip
+  - adobereader
+  - chromium
+  - coretemp
+  - discord
+  - dotnet-sdk
+  - fd
+  - Firefox
+  - fzf
+  - gimp
+  - git
+  - GoogleChrome
+  - googledrive
+  - gsudo
+  - jetbrains- rider
+  - keepass
+  - libreoffice- fresh
+  - make
+  - neovim
+  - nodejs- lts
+  - obsidian
+  - postman
+  - powershell- core
+  - powertoys
+  - python312
+  - ripgrep
+  - rufus
+  - slack
+  - spotify
+  - steam
+  - thunderbird
+  - todoist- desktop
+  - unzip
+  - vscode
+  - zoom
+  - zoxide
   # TODO: Add the other packages
 
 install_winget_packages: true
