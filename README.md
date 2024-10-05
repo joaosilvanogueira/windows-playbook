@@ -38,14 +38,3 @@ ansible-playbook main.yml --tags "choco,wsl"
 ## Author
 
 This project was created by [Alexander Nabokikh](https://www.linkedin.com/in/nabokih/) (initially inspired by [geerlingguy/mac-dev-playbook](https://github.com/geerlingguy/mac-dev-playbook)).
-
-## License
-
-This software is available under the following licenses:
-
-- **[MIT](https://github.com/AlexNabokikh/windows-playbook/blob/master/LICENSE)**
-
-[badge-gh-actions]: https://github.com/AlexNabokikh/windows-playbook/actions/workflows/release.yaml/badge.svg
-[badge-windows-11]: https://img.shields.io/badge/OS-Windows%2011%2021H2-blue
-[badge-windows-10]: https://img.shields.io/badge/OS-Windows%2010%2020H2-blue
-[badge-license]: https://img.shields.io/badge/License-MIT-informational
