@@ -55,15 +55,6 @@ if ($wslFeature.State -eq 'Enabled') {
     wsl --install
 }
 
-# Install Docker Desktop using Chocolatey
-if ([bool](Get-Command -Name 'docker' -ErrorAction SilentlyContinue)) {
-    Write-Verbose "Docker Desktop is already installed, skip installation." -Verbose
-} else {
-    Write-Verbose "Installing Docker Desktop using Chocolatey..." -Verbose
-    choco install docker-desktop -y
-}
-
-# TODO: Try to add an automation here
 # Function to close SSH port, should be run after the setup is complet
 function Close-SSHPort {
     Write-Verbose "Stopping OpenSSH service..." -Verbose

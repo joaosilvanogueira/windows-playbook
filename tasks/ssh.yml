@@ -1,0 +1,17 @@
+---
+- name: Ensure .ssh directory exists.
+  win_file:
+    path: "{{ ansible_env.USERPROFILE }}\\.ssh"
+    state: directory
+
+- name: Install ssh key
+  win_copy:
+    src: "{{ source_key }}"
+    dest: "{{ dest_key }}"
+
+- name: Install ssh key public
+  win_copy:
+    src: "{{ source_key }}.pub"
+    dest: "{{ dest_key }}.pub"
+
+# TODO: Add key to ssh agent

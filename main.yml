@@ -13,17 +13,28 @@
       tags: ["always"]
 
   tasks:
+    - name: Include debloat configuration.
+      ansible.builtin.import_tasks:
+        file: tasks/debloat.yml
+      when: remove_bloatware
+      tags: ["debloat"]
+
+    - name: Include ssh configuration.
+      ansible.builtin.import_tasks:
+        file: tasks/ssh.yml
+      tags: ["ssh"]
+
+    - name: Setup personal projects 
+      ansible.builtin.import_tasks:
+        file: tasks/personal_projects.yml
+      tags: ["personal_projects"]
+
     - name: Include windows updates configuration.
       ansible.builtin.import_tasks:
         file: tasks/updates.yml
       when: install_windows_updates
       tags: ["updates"]
 
-    - name: Include debloat configuration.
-      ansible.builtin.import_tasks:
-        file: tasks/debloat.yml
-      when: remove_bloatware
-      tags: ["debloat"]
 
     - name: Include chocolatey configuration.
       ansible.builtin.import_tasks:
