@@ -28,21 +28,21 @@ else {
     foreach ($package in $openSSHpackages) {
         Add-WindowsCapability -Online -Name $package
     }
+}
 
-    # Start the sshd service
-    Write-Verbose "Starting OpenSSH service..." -Verbose
-    Start-Service sshd
-    Set-Service -Name sshd -StartupType 'Manual'
+# Start the sshd service
+Write-Verbose "Starting OpenSSH service..." -Verbose
+Start-Service sshd
+Set-Service -Name sshd -StartupType 'Manual'
 
-    # Confirm the Firewall rule is configured. It should be created automatically by setup. Run the following to verify
-    Write-Verbose "Confirm the Firewall rule is configured..." -Verbose
-    if (!(Get-NetFirewallRule -Name "OpenSSH-Server-In-TCP" -ErrorAction SilentlyContinue | Select-Object Name, Enabled)) {
-        Write-Output "Firewall Rule 'OpenSSH-Server-In-TCP' does not exist, creating it..."
-        New-NetFirewallRule -Name 'OpenSSH-Server-In-TCP' -DisplayName 'OpenSSH Server (sshd)' -Enabled True -Direction Inbound -Protocol TCP -Action Allow -LocalPort 22
-    }
-    else {
-        Write-Output "Firewall rule 'OpenSSH-Server-In-TCP' has been created and exists."
-    }
+# Confirm the Firewall rule is configured. It should be created automatically by setup. Run the following to verify
+Write-Verbose "Confirm the Firewall rule is configured..." -Verbose
+if (!(Get-NetFirewallRule -Name "OpenSSH-Server-In-TCP" -ErrorAction SilentlyContinue | Select-Object Name, Enabled)) {
+    Write-Output "Firewall Rule 'OpenSSH-Server-In-TCP' does not exist, creating it..."
+    New-NetFirewallRule -Name 'OpenSSH-Server-In-TCP' -DisplayName 'OpenSSH Server (sshd)' -Enabled True -Direction Inbound -Protocol TCP -Action Allow -LocalPort 22
+}
+else {
+    Write-Output "Firewall rule 'OpenSSH-Server-In-TCP' has been created and exists."
 }
 
 # Check if WSL is installed
