@@ -54,14 +54,3 @@ if ($wslFeature.State -eq 'Enabled') {
     wsl --set-default-version 2
     wsl --install
 }
-
-# Function to close SSH port, should be run after the setup is complet
-function Close-SSHPort {
-    Write-Verbose "Stopping OpenSSH service..." -Verbose
-    Stop-Service sshd
-    
-    Write-Verbose "Disabling OpenSSH firewall rule..." -Verbose
-    Set-NetFirewallRule -Name 'OpenSSH-Server-In-TCP' -Enabled False
-    
-    Write-Output "SSH service stopped and port 22 closed."
-}

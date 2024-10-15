@@ -12,6 +12,24 @@
         - "{{ playbook_dir }}/config.yml"
       tags: ["always"]
 
+    - name: Clone win_git fork
+      git:
+        repo: 'https://github.com/joaosilvanogueira/ansible-win_git.git'
+        dest: '{{ playbook_dir }}/win_git'
+        version: master
+      delegate_to: localhost
+      tags: ["always"]
+
+    - name: Copy win_git scripts to DEFAULT_MODULE_PATH
+      local_action:
+        module: copy
+        src: "{{ item }}"
+        dest: "{{ lookup('env', 'HOME') }}/.ansible/plugins/module_utils/"
+      with_fileglob:
+        - "{{ playbook_dir }}/win_git/*.py"
+        - "{{ playbook_dir }}/win_git/*.ps1"
+      tags: ["always"]
+
   tasks:
     - name: Include debloat configuration.
       ansible.builtin.import_tasks:
@@ -23,11 +41,6 @@
       ansible.builtin.import_tasks:
         file: tasks/ssh.yml
       tags: ["ssh"]
-
-    - name: Setup personal projects 
-      ansible.builtin.import_tasks:
-        file: tasks/personal_projects.yml
-      tags: ["personal_projects"]
 
     - name: Include windows updates configuration.
       ansible.builtin.import_tasks:
@@ -41,12 +54,6 @@
         file: tasks/chocolatey.yml
       when: install_chocolatey_packages
       tags: ["choco"]
-
-    - name: Include winget configuration.
-      ansible.builtin.import_tasks:
-        file: tasks/winget.yml
-      when: install_winget_packages
-      tags: ["winget"]
 
     - name: Include fonts configuration.
       ansible.builtin.import_tasks:
@@ -95,3 +102,13 @@
         file: tasks/storage.yml
       when: configure_storage_sense
       tags: ["storage_sense"]
+
+    - name: Import dotfiles with symlink
+      ansible.builtin.import_tasks:
+        file: tasks/dotfiles.yml
+      tags: ["dotfiles"]
+
+    - name: git clones
+      ansible.builtin.import_tasks:
+        file: tasks/git.yml
+      tags: ["git"]

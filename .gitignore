@@ -6,3 +6,5 @@
 config.yml
 roles*
 hosts
+win_git
+.ssh

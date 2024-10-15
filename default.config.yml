@@ -9,7 +9,7 @@ configure_taskbar: true
 disable_mouse_acceleration: true
 remove_desktop_icons: true
 
-install_windows_updates: true
+install_windows_updates: false
 windows_updates_reboot: true
 update_categories:
   # You can install only specific updates by uncommenting it
@@ -32,51 +32,50 @@ change_power_plan: true
 # power_saver
 power_plan: "high_performance"
 
-install_chocolatey_packages: true
+install_chocolatey_packages: false
 choco_installed_packages:
+
+# core
+  - powershell-core
+  - dropbox
+  - fd
+  - Firefox
+  - fzf
+  - git
+  - zoxide
+  - vscode
+  - ripgrep
+  - discord
+  - keepass
+  - make
+  - neovim
+  - thunderbird
+  - spotify
+  - powertoys
+  - googledrive
+  - gsudo
+
+# work
+  - slack
   - zoom
+  - nodejs
+  - dotnet-sdk
+  - jetbrains-rider
+
+# other
   - 7zip
   - adobereader
   - chromium
   - coretemp
-  - discord
-  - dotnet-sdk
-  - fd
-  - Firefox
-  - fzf
   - gimp
-  - git
   - GoogleChrome
-  - googledrive
-  - gsudo
-  - jetbrains-rider
-  - keepass
   - libreoffice
-  - make
-  - neovim
-  - nodejs
   - obsidian
   - postman
-  - powershell
-  - powertoys-core
   - python312
-  - ripgrep
   - rufus
-  - slack
-  - spotify
-  - steam
-  - thunderbird
   - todoist-desktop
   - unzip
-  - vscode
-  - zoom
-  - zoxide
-  # TODO: Add the other packages
-
-install_winget_packages: true
-winget_packages:
-  # - name: "Auto Dark Mode"
-  #   source: winget
 
 install_fonts: true
 installed_nerdfonts:
@@ -134,3 +133,7 @@ storage_sense:
   recycle_bin_age: 30
   delete_downloads_files: true
   downloads_age: 30
+
+dotfiles:
+  - src: "{{ ansible_env.USERPROFILE }}\\personal\\code\\dotfiles\\git\\.gitconfig"
+    dest: "{{ ansible_env.USERPROFILE }}\\.gitconfig"

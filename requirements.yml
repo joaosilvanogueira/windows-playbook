@@ -1,5 +1,7 @@
 ---
 collections:
   - name: ansible.windows
+  - name: ansible.builtin
   - name: chocolatey.chocolatey
   - name: community.windows
+  - name: win_git

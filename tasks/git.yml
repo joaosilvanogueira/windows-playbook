@@ -1,0 +1,21 @@
+- name: git clone test
+  win_git:
+    repo: "git@github.com:joaosilvanogueira/windows-playbook.git"
+    dest: "{{ ansible_env.USERPROFILE }}\\windows-playbook"
+    branch: master
+    clone: yes
+    update: yes
+    replace_dest: no
+    accept_hostkey: yes
+  ignore_errors: yes
+
+- name: git clone test 2
+  win_git:
+    repo: "git@github.com:joaosilvanogueira/my-dotfiles.git"
+    dest: "{{ ansible_env.USERPROFILE }}\\my-dotfiles"
+    branch: master
+    clone: yes
+    update: yes
+    replace_dest: no
+    accept_hostkey: yes
+  ignore_errors: yes

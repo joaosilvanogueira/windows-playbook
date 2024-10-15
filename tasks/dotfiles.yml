@@ -1,0 +1,47 @@
+- name: Ensure destination directories exist
+  win_file:
+    path: "{{ item.dest | win_dirname }}"
+    state: directory
+  loop: "{{ dotfiles }}"
+
+- name: Create symlink for dotfile
+  win_shell: |
+    $source = "{{ item.src }}"
+    $target = "{{ item.dest }}"
+    if (Test-Path $target) {
+      Remove-Item $target -Force
+    }
+    New-Item -ItemType SymbolicLink -Path $target -Target $source -Force
+  loop: "{{ dotfiles }}"
+
+- name: Display symlink creation result
+  debug:
+    msg: "Symlink created: {{ item.dest }} -> {{ item.src }}"
+  loop: "{{ dotfiles }}"
+
+# - name: Clone dotfiles repository
+#   win_git:
+#     repo: "git@github.com/joaosilvanogueira/windows-playbook"
+#     dest: "{{ ansible_env.USERPROFILE }}\\dotfiles"
+
+- name: git clone test
+  win_git:
+    repo: "git@github.com:joaosilvanogueira/windows-playbook.git"
+    dest: "{{ ansible_env.USERPROFILE }}\\windows-playbook"
+    branch: master
+    clone: yes
+    update: yes
+    replace_dest: no
+    accept_hostkey: yes
+  ignore_errors: yes
+
+- name: git clone test 2
+  win_git:
+    repo: "git@github.com:joaosilvanogueira/my-dotfiles.git"
+    dest: "{{ ansible_env.USERPROFILE }}\\my-dotfiles"
+    branch: master
+    clone: yes
+    update: yes
+    replace_dest: no
+    accept_hostkey: yes
+  ignore_errors: yes
