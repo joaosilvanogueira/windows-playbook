@@ -137,3 +137,15 @@ storage_sense:
 dotfiles:
   - src: "{{ ansible_env.USERPROFILE }}\\personal\\code\\dotfiles\\git\\.gitconfig"
     dest: "{{ ansible_env.USERPROFILE }}\\.gitconfig"
+
+  - src: "{{ ansible_env.USERPROFILE }}\\personal\\code\\dotfiles\\git\\.gitmessage"
+    dest: "{{ ansible_env.USERPROFILE }}\\.gitmessage"
+
+  - src: "{{ ansible_env.USERPROFILE }}\\personal\\code\\dotfiles\\git\\.gitconfig-work"
+    dest: "{{ ansible_env.USERPROFILE }}\\.gitconfig-work"
+
+  - src: "{{ ansible_env.USERPROFILE }}\\personal\\code\\dotfiles\\windows-terminal/LocalAppData/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json"
+    dest: "{{ ansible_env.USERPROFILE }}\\AppData\\Local\\Microsoft\\Microsoft.WindowsTerminal_8wekyb3d8bbwe\\LocalState\\settings.json"
+
+  - src: "{{ ansible_env.USERPROFILE }}\\personal\\code\\dotfiles\\ideavim\\.ideavimrc"
+    dest: "{{ ansible_env.USERPROFILE }}\\.ideavimrc"
