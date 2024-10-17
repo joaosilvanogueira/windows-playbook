@@ -149,3 +149,6 @@ dotfiles:
 
   - src: "{{ ansible_env.USERPROFILE }}\\personal\\code\\dotfiles\\ideavim\\.ideavimrc"
     dest: "{{ ansible_env.USERPROFILE }}\\.ideavimrc"
+
+  - src: "{{ ansible_env.USERPROFILE }}\\personal\\code\\dotfiles\\powerhsell\\Microsoft.PowerShell_profile.ps1"
+    dest: "{{ ansible_env.USERPROFILE }}\\Documents\\PowerShell"
